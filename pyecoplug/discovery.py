@@ -2,7 +2,7 @@ import socket
 from datetime import datetime
 import struct, time
 from threading import Thread
-from .switch import EcoSwitch
+from .plug import EcoPlug
 
 def normalize_string(x):
     if type(x) == bytes:
@@ -43,13 +43,13 @@ class EcoDiscovery(object):
         now = time.time()
         mac_addr = pkt[-3]
         if not mac_addr in self.discovered:
-            switch = EcoSwitch(pkt)
-            self.on_add(switch)
-            self.discovered[mac_addr] = (now, switch)
+            plug = EcoPlug(pkt)
+            self.on_add(plug)
+            self.discovered[mac_addr] = (now, plug)
         else:
-            switch = self.discovered[mac_addr][1]
-            switch.switch_data = pkt
-            self.discovered[mac_addr] = (now, switch)
+            plug = self.discovered[mac_addr][1]
+            plug.plug_data = pkt
+            self.discovered[mac_addr] = (now, plug)
 
     def prune_stale(self):
         now = time.time()
@@ -58,9 +58,9 @@ class EcoDiscovery(object):
             if now - p[0] >= 30:
                 to_remove.append(mac)
         for mac in to_remove:
-            switch = self.discovered[mac][1]
-            self.on_remove(switch)
-            switch.stop()
+            plug = self.discovered[mac][1]
+            self.on_remove(plug)
+            plug.stop()
             del(self.discovered[mac])
 
     def poll_discovery(self):
@@ -110,8 +110,8 @@ if __name__ == '__main__':
         e.start()
         time.sleep(180)
     finally:
-        for switch in e.iterate():
-            switch.turn_off()
+        for plug in e.iterate():
+            plug.turn_off()
         e.stop()
 
 

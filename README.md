@@ -1,27 +1,27 @@
-Python library interface to EcoPlug wifi outlet switch.
+Python library interface to EcoPlug wifi outlet.
 
 Until proper documentation...
 
-    >>> from pyecoswitch import *
-    >>> switches = {}
+    >>> from pyecoplug import *
+    >>> plugs = {}
     >>> def add(s):
-    ...     switches[s.name] = s
+    ...     plugs[s.name] = s
     ... 
     >>> def remove(s):
-    ...     del(switches[s.name])
+    ...     del(plugs[s.name])
     ... 
     >>> e = EcoDiscovery(add, remove)
     >>> e.start()
-    >>> switches
-    {'test': ('## EcoSwitch ##', b'test')}
-    >>> switches['test'].is_on()
+    >>> plug
+    {'test': ('## EcoPlug ##', b'test')}
+    >>> plug['test'].is_on()
     False
-    >>> switches['test'].turn_on()
-    >>> switches['test'].is_on()
+    >>> plug['test'].turn_on()
+    >>> plug['test'].is_on()
     True
-    >>> switches['test'].turn_off()
-    >>> switches['test'].is_on()
+    >>> plug['test'].turn_off()
+    >>> plug['test'].is_on()
     False
-    >>> switches['test'].turn_on()
-    >>> switches['test'].turn_off()
+    >>> plug['test'].turn_on()
+    >>> plug['test'].turn_off()
     >>> e.stop()

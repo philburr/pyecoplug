@@ -1,2 +1,2 @@
 from .discovery import EcoDiscovery
-from .switch import EcoSwitch
+from .plug import EcoPlug

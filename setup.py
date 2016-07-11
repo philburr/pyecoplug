@@ -1,11 +1,11 @@
 from setuptools import setup
 
-setup(name='pyecoswitch',
+setup(name='pyecoplug',
         version='0.0.1',
-        description='Interface for the EcoPlug outlet switch',
-        url='http://github/philburr/pyecoswitch',
+        description='Interface for the EcoPlug outlet',
+        url='http://github/philburr/pyecoplug',
         author='phil.burr@gmail.com',
         license='MIT',
-        packages=['pyecoswitch'],
+        packages=['pyecoplug'],
         install_requires=[],
         zip_safe=True)

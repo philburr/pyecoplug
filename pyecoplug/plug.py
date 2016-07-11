@@ -4,13 +4,13 @@ import pprint
 from threading import Thread, Event
 import random
 
-class EcoSwitch(object):
+class EcoPlug(object):
     def __init__(self, data):
-        self.switch_data = data
+        self.plug_data = data
         self.name = data[3].decode('utf-8')
 
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.socket.connect((self.switch_data[-2], self.switch_data[-1]))
+        self.socket.connect((self.plug_data[-2], self.plug_data[-1]))
 
         self.pending = {}
 
@@ -22,7 +22,7 @@ class EcoSwitch(object):
         def class_decor(s):
             return '## %s ##' %s
         return pprint.pformat(
-                (class_decor(self.__class__.__name__), self.switch_data[3])
+                (class_decor(self.__class__.__name__), self.plug_data[3])
                 )
 
     def stop(self):
@@ -49,7 +49,6 @@ class EcoSwitch(object):
                 continue
 
     def xmit(self, data):
-        #self.socket.sendto(data, (self.switch_data[-2], self.switch_data[-1]))
         self.socket.send(data)
 
     def send_payload(self, flags, command, data, cb = None):
@@ -59,11 +58,11 @@ class EcoSwitch(object):
                 command,
                 xid,
                 len(data),
-                self.switch_data[1],
-                self.switch_data[2],
-                self.switch_data[3],
-                self.switch_data[4],
-                0,      # The switch returns data in this field
+                self.plug_data[1],
+                self.plug_data[2],
+                self.plug_data[3],
+                self.plug_data[4],
+                0,      # The plug returns data in this field
                 int(time.time() * 1000) & 0xffffffff,
                 0,
                 0x0d5249ae)
