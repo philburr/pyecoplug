@@ -36,6 +36,7 @@ class EcoDiscovery(object):
         self.running = False
         self.thread.join()
         for m, p in self.discovered.items():
+            self.on_remove(p[1])
             p[1].stop()
         self.discovered.clear()
 

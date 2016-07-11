@@ -12,16 +12,16 @@ Until proper documentation...
     ... 
     >>> e = EcoDiscovery(add, remove)
     >>> e.start()
-    >>> plug
+    >>> plugs
     {'test': ('## EcoPlug ##', b'test')}
-    >>> plug['test'].is_on()
+    >>> plugs['test'].is_on()
     False
-    >>> plug['test'].turn_on()
-    >>> plug['test'].is_on()
+    >>> plugs['test'].turn_on()
+    >>> plugs['test'].is_on()
     True
-    >>> plug['test'].turn_off()
-    >>> plug['test'].is_on()
+    >>> plugs['test'].turn_off()
+    >>> plugs['test'].is_on()
     False
-    >>> plug['test'].turn_on()
-    >>> plug['test'].turn_off()
+    >>> plugs['test'].turn_on()
+    >>> plugs['test'].turn_off()
     >>> e.stop()
