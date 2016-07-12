@@ -133,6 +133,10 @@ class EcoPlug(object):
         def cb(packet, payload):
             state[0] = payload[1] == 1
             e.set()
-        self.send_payload(0x17, 0x05, b'', cb)
-        e.wait()
+        while i in xrange(10):
+            self.send_payload(0x17, 0x05, b'', cb)
+            if e.wait(1):
+                break
+            self.stop()
+            self._connect()
         return state[0]
