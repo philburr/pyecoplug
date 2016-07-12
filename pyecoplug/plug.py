@@ -133,7 +133,7 @@ class EcoPlug(object):
         def cb(packet, payload):
             state[0] = payload[1] == 1
             e.set()
-        while i in xrange(10):
+        for i in range(10):
             self.send_payload(0x17, 0x05, b'', cb)
             if e.wait(1):
                 break

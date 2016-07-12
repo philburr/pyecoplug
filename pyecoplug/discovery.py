@@ -17,19 +17,21 @@ class EcoDiscovery(object):
         self.on_remove = on_remove
         self.discovered = {}
 
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.socket.bind(('0.0.0.0', self.UDP_PORT))
-        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        self.socket.settimeout(0.5)
-
-        self.running = True
-        self.thread = Thread(target=self.poll_discovery)
+        self.running = False
 
     def iterate(self):
         for m, p in self.discovered.items():
             yield p[1]
 
     def start(self):
+        self.running = True
+        self.thread = Thread(target=self.poll_discovery)
+
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.bind(('0.0.0.0', self.UDP_PORT))
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        self.socket.settimeout(0.5)
+
         self.thread.start()
 
     def stop(self):
@@ -39,6 +41,7 @@ class EcoDiscovery(object):
             self.on_remove(p[1])
             p[1].stop()
         self.discovered.clear()
+        self.socket.close()
 
     def process_packet(self, pkt):
         now = time.time()
