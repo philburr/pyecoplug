@@ -24,7 +24,7 @@ Note: No support for the energy monitoring capability of selected outlets.
 Home Assistant installation
 
 1. Plugs must be setup on the same network as your homeassistant system via the Eco Plug apk.
-2. Copy pyecoplug.py to "your homeassistant dir"/custom_components/switch
+2. Copy ecoplug.py to "your homeassistant dir"/custom_components/switch
 3. Edit your configuration.yaml and add the following lines
 
 ```
