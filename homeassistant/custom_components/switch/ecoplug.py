@@ -33,11 +33,11 @@ class EcoPlugSwitch(SwitchDevice):
 
     def turn_on(self):
         self._plug.turn_on()
-        self.update_state()
+        self.update()
 
     def turn_off(self):
         self._plug.turn_off()
-        self.update_state()
+        self.update()
 
     def update(self):
         _LOGGER.info('update')
