@@ -30,12 +30,16 @@ Home Assistant installation
 ```
    switch:
    - platform: ecoplug
+     scan_interval: 10
 ```  
+
 4. Restart homeassistant. The requirements will be loaded successfully by homeassistant.
 5. Plugs on the same network will be discovered and switches added in the ui.
 6. If you have set up Alexa and/or Google Assistant integration, devices can be discovered
 and controlled.
 (tested with 4 Workchoice RC-032W Outlets)
+
+Note: Updated to add scan_interval entry. Required to detect status when manual switch on/off occurs
 
 
 
