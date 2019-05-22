@@ -4,5 +4,5 @@
   "documentation": "https://github.com/gbealmer/pyecoplug/",
   "dependencies": [],
   "codeowners": [],
-  "requirements": []
+  "requirements": ["pyecoplug==0.0.5"]
 }
