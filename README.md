@@ -2,6 +2,8 @@ Python library interface to EcoPlug wifi outlet.
 
 Until proper documentation...
 
+Allow UDP 8900 inbound in firewall
+
     >>> from pyecoplug import *
     >>> plugs = {}
     >>> def add(s):

@@ -9,7 +9,10 @@ class EcoPlug(object):
 
     def __init__(self, data):
         self.plug_data = data
+        # Name set for outlet in phone app
         self.name = data[3].decode('utf-8')
+        # 'Manufacturer-partial MAC' as unique ID (e.g. 'ECO-123456')
+        self.ident = data[2].decode('utf-8')
 
         self._pending = {}
 
